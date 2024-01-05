@@ -5,6 +5,11 @@ import { z } from "zod";
 
 const StarWarsPerson = z.object({
   name: z.string(),
+}).transform((people) => {
+  return {
+    ...people,
+    nameAsArray: people.name.split(" "),
+  }
 });
 //^ 🕵️‍♂️
 
