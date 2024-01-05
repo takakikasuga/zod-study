@@ -5,9 +5,12 @@ import { z } from "zod";
 
 const Form = z.object({
   repoName: z.string(),
-  keywords: z.array(z.string()).optional(),
+  keywords: z.array(z.string()).optional().default([]),
   //                           ^ 🕵️‍♂️
 });
+
+type FromInput = z.input<typeof Form>;
+type FromOutput = z.infer<typeof Form>;
 
 export const validateFormInput = (values: unknown) => {
   const parsedData = Form.parse(values);
